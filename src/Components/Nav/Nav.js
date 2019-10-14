@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import {changePage} from '../../ducks/reducer'
 import {Redirect} from 'react-router-dom'
 
-export class Nav extends Component {
+class Nav extends Component {
     render() {
         return (
             <div>
@@ -22,9 +22,11 @@ export class Nav extends Component {
     }
 }
 
-const mapStateToProps = (reduxState) => ({
-    page: reduxState.reducer.page
-})
+const mapStateToProps = (reduxState) => {
+    return {
+        page: reduxState.reducer.page
+    }
+}
 
 const mapDispatchToProps = {
     changePage
