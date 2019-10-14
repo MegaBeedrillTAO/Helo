@@ -1,14 +1,9 @@
-.App{
-    
+.auth{
+    background-image: linear-gradient(99deg,#ff70a6,#ff9770 40%,#ffd670 73%,#e9ff70);
     width: 100vw;
     height: 100vh;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #fff;
-    position: absolute;
 }
-
-@import './nav';
-@import './auth';

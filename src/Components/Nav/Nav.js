@@ -4,9 +4,14 @@ import {changePage} from '../../ducks/reducer'
 import {Redirect} from 'react-router-dom'
 
 class Nav extends Component {
+    
+
     render() {
+        
+        
         return (
-            <div>
+            <div className={this.props.nav}>
+               
                 {this.props.page === '/' ?
                     <Redirect to='/'/>:
                 this.props.page === '/dashboard'?
@@ -16,6 +21,7 @@ class Nav extends Component {
                     null
             
                 }
+                 
                 
             </div>
         )
@@ -24,7 +30,8 @@ class Nav extends Component {
 
 const mapStateToProps = (reduxState) => {
     return {
-        page: reduxState.reducer.page
+        page: reduxState.reducer.page,
+        nav: reduxState.reducer.nav
     }
 }
 

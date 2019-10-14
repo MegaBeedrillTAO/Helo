@@ -1,14 +1,15 @@
 const initialState = {
-    page: '/'
+    page: '/',
+    nav: 'nav-block'
 }
 
 const CHANGE_PAGE = 'CHANGE_PAGE';
 
 
-export function changePage(page){
+export function changePage(thing){
     return {
         type: CHANGE_PAGE,
-        payload: page
+        payload: thing
     }
 }
 
@@ -20,7 +21,8 @@ export default function reducer(state = initialState, action){
         case CHANGE_PAGE:
             return{
                 ...state,
-                currentPage: payload
+                page: payload.page,
+                nav: payload.nav
             }
         default: return state;
     }
