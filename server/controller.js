@@ -22,18 +22,53 @@ async function login(req, res){
             req.session.user = {
                user_id: foundUser[0].user_id,
                username: foundUser[0].username,
-               
+               profile_pic: foundUser[0].profile_pic
             };
 
             
 
 
-            res.status(200).json([req.session.user, req.session.settings]);
+            res.status(200).json(req.session.user);
          }
       }
 }
 
+async function register(req, res){
+   const {username, password} = req.body;
+     const db = req.app.get('db');
+
+     const foundUser = await db.auth.checkForUserName(username);
+
+     if (foundUser[0]) {
+        res.status(409).json("Username Taken")
+     } else {
+
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(password, salt)
+
+        const newUser = await db.auth.registerUser(username, hash);
+        
+        
+        req.session.user = {
+           user_id: newUser[0].user_id,
+           username: newUser[0].username,
+           profile_pic: newUser[0].profile_pic
+        };
+        
+        
+
+        res.status(200).json(req.session.user);
+     }
+}
+
+async function logout(req, res){
+   req.session.destroy();
+   res.sendStatus(200);
+}
+
 
 module.exports = {
-    login
+    login,
+    logout,
+    register
 }
