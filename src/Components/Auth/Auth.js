@@ -34,7 +34,7 @@ export class Auth extends Component {
        
     }
     render() {
-        if(this.props.id !== null){
+        if(this.props.id !== null && this.props.redirect === true){
             this.props.changePage({page: '/dashboard', nav: 'nav'})
         }
         return (
@@ -50,7 +50,8 @@ export class Auth extends Component {
 
 const mapStateToProps = (reduxState) => ({
     page: reduxState.reducer.page,
-    id: reduxState.authReducer.user_id
+    id: reduxState.authReducer.user_id,
+    redirect: reduxState.authReducer.redirect
 })
 
 const mapDispatchToProps = {

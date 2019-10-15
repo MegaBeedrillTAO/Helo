@@ -34,7 +34,8 @@ async function login(req, res){
 }
 
 async function register(req, res){
-   const {username, password, profile_pic} = req.body;
+   const {username, password, profile} = req.body;
+   console.log(profile)
      const db = req.app.get('db');
 
      const foundUser = await db.checkForUserName(username);
@@ -46,7 +47,7 @@ async function register(req, res){
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt)
 
-        const newUser = await db.registerUser(username, hash, profile_pic);
+        const newUser = await db.registerUser(username, hash, profile);
         
         
         req.session.user = {

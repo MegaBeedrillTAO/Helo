@@ -3,7 +3,8 @@ import Axios from 'axios'
 const initialState = {
     username: '',
     user_id: null,
-    profile_pic: ''
+    profile_pic: '',
+    redirect: false
 }
 
 const REGISTER_USER = 'REGISTER_USER';
@@ -11,6 +12,7 @@ const LOGIN_USER = 'LOGIN_USER';
 const LOGOUT_USER = 'LOGOUT_USER';
 
 export function registerUser(newUser) {
+    
     return {
        type: REGISTER_USER,
        payload: Axios.post('/auth/register', newUser)
@@ -42,7 +44,8 @@ export default function reducer(state = initialState, action){
             ...state,
             user_id: payload.data.user_id,
             username: payload.data.username,
-            profile_pic: payload.data.profile_pic
+            profile_pic: payload.data.profile_pic,
+            redirect: true
          };
          case `${LOGIN_USER}_FULFILLED`:
             
@@ -50,13 +53,15 @@ export default function reducer(state = initialState, action){
             ...state,
             user_id: payload.data.user_id,
             username: payload.data.username,
-            profile_pic: payload.data.profile_pic
+            profile_pic: payload.data.profile_pic,
+            redirect: true
          };
          case LOGOUT_USER:
          return {
             userId: null,
             username: '',
-            profile_pic: ''
+            profile_pic: '',
+            redirect: false
          };
         default: return state
     }

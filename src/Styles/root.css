@@ -68,6 +68,24 @@
   width: 40px;
 }
 
+.nav .profile-holder {
+  height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 45px;
+}
+
+.nav .profile-holder .profile-pic {
+  border-radius: 50%;
+  border: solid black 3px;
+  width: 60px;
+  background-color: white;
+}
+
 .nav-block {
   display: none;
 }
