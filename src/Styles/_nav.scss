@@ -28,17 +28,24 @@
     }
     img{
         width: 40px;
+        &:hover{
+            cursor: pointer;
+        }
     }
     .profile-holder{
         height: 100px;
         display: flex;
         align-items: center;
         margin-bottom: 45px;
+        flex-direction: column;
         .profile-pic{
             border-radius: 50%; 
             border: solid black 3px;
             width: 60px;
             background-color: white;
+            &:hover{
+                cursor: default;
+            }
         }
     }
 }

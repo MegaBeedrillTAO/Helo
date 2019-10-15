@@ -1,8 +1,23 @@
 .App {
   width: 100vw;
   height: 100vh;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.dashboard {
+  width: 70%;
+  height: 100vh;
+}
+
+.dashboard .search-bar {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -12,8 +27,33 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.dashboard .search-bar .search-input {
+  height: 25px;
+  width: 90%;
+}
+
+.dashboard .search-bar .reset-button {
+  height: 25px;
+  padding: 5px 10px;
+  border-radius: 1px;
+  background-image: radial-gradient(circle at 50% -46%, #737373, #403d39);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   color: #fff;
-  position: absolute;
+}
+
+.dashboard .search-bar .search-button {
+  height: 25px;
+  width: 25px;
+  background-color: #ff9770;
+  border-radius: 2px;
+  padding: 2px;
 }
 
 .nav {
@@ -68,6 +108,10 @@
   width: 40px;
 }
 
+.nav img:hover {
+  cursor: pointer;
+}
+
 .nav .profile-holder {
   height: 100px;
   display: -webkit-box;
@@ -77,6 +121,10 @@
       -ms-flex-align: center;
           align-items: center;
   margin-bottom: 45px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .nav .profile-holder .profile-pic {
@@ -84,6 +132,10 @@
   border: solid black 3px;
   width: 60px;
   background-color: white;
+}
+
+.nav .profile-holder .profile-pic:hover {
+  cursor: default;
 }
 
 .nav-block {

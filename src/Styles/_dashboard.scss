@@ -1,0 +1,32 @@
+.dashboard{
+    width: 70%;
+    
+    height: 100vh;
+    .search-bar{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .search-input{
+            height: 25px;
+            width: 90%;
+        }
+        .reset-button{
+            height: 25px;
+            padding: 5px 10px;
+            border-radius: 1px;
+            background-image: radial-gradient(circle at 50% -46%,#737373,#403d39);
+            display: flex;
+            align-items: center;
+            color: #fff;
+        }
+        .search-button{
+            height: 25px;
+            width: 25px;
+            background-color: #ff9770;
+            border-radius: 2px;
+            padding: 2px;
+            
+        }
+    }
+    
+}
