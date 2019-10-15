@@ -10,11 +10,12 @@ export class Auth extends Component {
         super();
         this.state ={
             username: '',
-            password: ''
+            password: '',
+            profile: ''
         }
     }
     handleUserName = (e) => {
-        this.setState({username: e.target.value})
+        this.setState({username: e.target.value, profile: `https://robohash.org/${e.target.value}`})
     }
     handlePassword = (e) => {
         this.setState({password: e.target.value})
@@ -23,20 +24,19 @@ export class Auth extends Component {
     handleLogin = () => {
         const {username, password} = this.state;
         this.props.loginUser({username, password})
-        if(this.props.id !== null){
-            this.props.changePage({page: '/dashboard', nav: 'nav'})
-        }
+        
         
     }
     handleRegister = () => {
-        const {username, password} = this.state;
-        let profile = `https://robohash.org/${username}`
+        const {username, password, profile} = this.state;
+       
         this.props.registerUser({username, password, profile})
+       
+    }
+    render() {
         if(this.props.id !== null){
             this.props.changePage({page: '/dashboard', nav: 'nav'})
         }
-    }
-    render() {
         return (
             <div className='auth'>
                 <input onChange={this.handleUserName}/>

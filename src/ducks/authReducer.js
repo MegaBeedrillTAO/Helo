@@ -48,8 +48,8 @@ export default function reducer(state = initialState, action){
             
          return {
             ...state,
-            user_id: payload.data[0].user_id,
-            username: payload.data[0].username,
+            user_id: payload.data.user_id,
+            username: payload.data.username,
             profile_pic: payload.data.profile_pic
          };
          case LOGOUT_USER:

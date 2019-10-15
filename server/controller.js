@@ -4,7 +4,7 @@ async function login(req, res){
     const {username, password} = req.body;
       const db = req.app.get('db');
 
-      const foundUser = await db.auth.checkForUserName(username);
+      const foundUser = await db.checkForUserName(username);
 
       if (!foundUser[0]) {
          res.status(403).json("Username or Password incorrect")
@@ -20,7 +20,7 @@ async function login(req, res){
             
             
             req.session.user = {
-               user_id: foundUser[0].user_id,
+               user_id: foundUser[0].id,
                username: foundUser[0].username,
                profile_pic: foundUser[0].profile_pic
             };
@@ -34,10 +34,10 @@ async function login(req, res){
 }
 
 async function register(req, res){
-   const {username, password} = req.body;
+   const {username, password, profile_pic} = req.body;
      const db = req.app.get('db');
 
-     const foundUser = await db.auth.checkForUserName(username);
+     const foundUser = await db.checkForUserName(username);
 
      if (foundUser[0]) {
         res.status(409).json("Username Taken")
@@ -46,11 +46,11 @@ async function register(req, res){
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt)
 
-        const newUser = await db.auth.registerUser(username, hash);
+        const newUser = await db.registerUser(username, hash, profile_pic);
         
         
         req.session.user = {
-           user_id: newUser[0].user_id,
+           user_id: newUser[0].id,
            username: newUser[0].username,
            profile_pic: newUser[0].profile_pic
         };
