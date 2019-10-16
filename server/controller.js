@@ -68,14 +68,18 @@ async function logout(req, res){
 }
 
 async function getAllPosts(req,res){
-   
-   if (req.query.check === 'true'){
-      const allPosts = await req.app.get('db').getAllPosts();
-      res.status(200).json(allPosts);
-   }
-   else {
+   console.log(req.query.search)
+   console.log(req.query.check)
+   if (req.query.check === 'false' && req.query.search === ''){
       const posts = await req.app.get('db').getPosts(req.session.user_id);
+      console.log(posts);
       res.status(200).json(posts);
+   }
+   else  {
+      
+      const allPosts = await req.app.get('db').getAllPosts();
+      
+      res.status(200).json(allPosts);
    }
    
 }

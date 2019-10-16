@@ -13,18 +13,24 @@ export default class Dashboard extends Component {
     }
 
     componentDidMount(){
-        axios.get(`/posts/get?check=${this.state.checkbox}`).then(response => {
+        axios.get(`/posts/get`).then(response => {
             this.setState({posts: [...response.data]})
         })
     }
-
+    
+ 
     handleSearch = (e) => {
         this.setState({search: e.target.value})
     }
     handleCheck = () => {
-        this.setState({checkbox: !this.state.checkbox})
+        this.setState({checkbox: !this.state.checkbox}, () =>{
+            axios.get(`/posts/get?check=${this.state.checkbox}&search=${this.state.search}`).then(response => {
+                this.setState({posts: [...response.data]})
+            })
+        })
         
     }
+
     
 
     render() {
