@@ -39,6 +39,8 @@ class Nav extends Component {
                     <Redirect to='/dashboard'/>:
                 this.props.page === '/new'?
                     <Redirect to='/new'/>:
+                this.props.page.includes('/post')?
+                    <Redirect to={this.props.page}/>:
                     null
             
                 }

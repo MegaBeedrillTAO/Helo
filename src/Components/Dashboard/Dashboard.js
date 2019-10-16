@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import Post from '../Post/Post'
 import axios from 'axios'
+import {changePage} from '../../ducks/reducer'
+import {connect} from 'react-redux'
+import {Link} from 'react-router-dom';
 
-export default class Dashboard extends Component {
+ class Dashboard extends Component {
     constructor(){
         super();
         this.state = {
@@ -18,7 +21,7 @@ export default class Dashboard extends Component {
         })
     }
     
- 
+   
     handleSearch = (e) => {
         this.setState({search: e.target.value})
     }
@@ -39,12 +42,24 @@ export default class Dashboard extends Component {
 
     render() {
         const post = this.state.posts.map((el, i) => (
-            <Post
-            key={i}
-            title = {el.title}
-            author = {el.username}
-            pic = {el.profile_pic}
-            />
+            
+            // <Post
+            // key={i}
+            // title = {el.title}
+            // author = {el.username}
+            // pic = {el.profile_pic}
+            // id = {el.id}
+            // />
+            <Link to={`/post/${el.id}`}>
+            <div className='post'>
+                <h2>{el.title}</h2>
+                <h2>{}</h2>
+                <section>
+                    <p>{el.username}</p>
+                    <img src={el.profile_pic} alt='profile pic'/>
+                </section>
+            </div>
+            </Link>
         ))
         return (
             <div className='dashboard'>
@@ -64,3 +79,15 @@ export default class Dashboard extends Component {
         )
     }
 }
+
+const mapStateToProps = (reduxState) => {
+    return {
+
+    }
+}
+
+const mapDispatchToProps = {
+    changePage
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)

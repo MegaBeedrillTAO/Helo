@@ -183,6 +183,10 @@
           box-sizing: border-box;
 }
 
+.post:hover {
+  cursor: pointer;
+}
+
 .post img {
   border-radius: 50%;
   border: solid black 3px;
