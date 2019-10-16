@@ -1,0 +1,1 @@
+select * from users join posts on users.id = posts.author_id where posts.title ilike $1 and users.id != $2

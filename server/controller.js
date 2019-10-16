@@ -68,11 +68,20 @@ async function logout(req, res){
 }
 
 async function getAllPosts(req,res){
-   console.log(req.query.search)
-   console.log(req.query.check)
-   if (req.query.check === 'false' && req.query.search === ''){
+   if(req.query.check === 'true' && req.query.search !== ''){
+      let search = req.query.search + '%'
+      const allSearch = await req.app.get('db').getAllSearch(search);
+      res.status(200).json(allSearch);
+   }
+   else if(req.query.check === 'false' && req.query.search !== ''){
+      let search = req.query.search + '%'
+      const allSearch = await req.app.get('db').getSearch(search, req.session.user_id);
+      res.status(200).json(allSearch);
+   }
+  
+   else if (req.query.check === 'false' && req.query.search === ''){
       const posts = await req.app.get('db').getPosts(req.session.user_id);
-      console.log(posts);
+      
       res.status(200).json(posts);
    }
    else  {
