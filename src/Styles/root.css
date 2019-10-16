@@ -56,6 +56,12 @@
   padding: 2px;
 }
 
+.dashboard .checkbox-holder {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .nav {
   height: 100vh;
   width: 100px;
@@ -157,5 +163,36 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.post {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #fff;
+  height: 10vh;
+  width: 60%;
+  border: solid black 2px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.post img {
+  border-radius: 50%;
+  border: solid black 3px;
+  width: 60px;
+  background-color: white;
+}
+
+.post section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 /*# sourceMappingURL=root.css.map */

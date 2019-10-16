@@ -67,9 +67,22 @@ async function logout(req, res){
    res.sendStatus(200);
 }
 
+async function getAllPosts(req,res){
+   
+   if (req.query.check === 'true'){
+      const allPosts = await req.app.get('db').getAllPosts();
+      res.status(200).json(allPosts);
+   }
+   else {
+      const posts = await req.app.get('db').getPosts(req.session.user_id);
+      res.status(200).json(posts);
+   }
+   
+}
 
 module.exports = {
     login,
     logout,
-    register
+    register,
+    getAllPosts
 }

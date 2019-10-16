@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import Post from '../Post/Post'
+import axios from 'axios'
 
 export default class Dashboard extends Component {
     constructor(){
@@ -10,6 +12,12 @@ export default class Dashboard extends Component {
         }
     }
 
+    componentDidMount(){
+        axios.get(`/posts/get?check=${this.state.checkbox}`).then(response => {
+            this.setState({posts: [...response.data]})
+        })
+    }
+
     handleSearch = (e) => {
         this.setState({search: e.target.value})
     }
@@ -17,8 +25,17 @@ export default class Dashboard extends Component {
         this.setState({checkbox: !this.state.checkbox})
         
     }
+    
 
     render() {
+        const post = this.state.posts.map((el, i) => (
+            <Post
+            key={i}
+            title = {el.title}
+            author = {el.username}
+            pic = {el.profile_pic}
+            />
+        ))
         return (
             <div className='dashboard'>
                 <section className='search-bar'>
@@ -30,6 +47,9 @@ export default class Dashboard extends Component {
                     <input type='checkbox' defaultChecked='on' onChange={this.handleCheck}/>
                     </div>
                 </section>
+                <main className='post-holder'>
+                    {post}
+                </main>
             </div>
         )
     }
