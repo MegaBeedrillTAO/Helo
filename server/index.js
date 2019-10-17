@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const massive = require('massive');
 const session = require('express-session');
-const {login, logout, register, getAllPosts} = require('./controller');
+const {login, logout, register, getAllPosts, getUser} = require('./controller');
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 
 app.use(express.json());
@@ -26,6 +26,8 @@ app.post('/auth/register', register);
 app.post('/auth/login', login)
 
 app.get('/posts/get', getAllPosts);
+
+app.get('/auth/user', getUser)
 
 app.listen(SERVER_PORT, ()=>{
     console.log(`Listening on port ${SERVER_PORT}`);

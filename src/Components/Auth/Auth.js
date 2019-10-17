@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {changePage} from '../../ducks/reducer'
-import {registerUser, loginUser} from '../../ducks/authReducer'
+import {registerUser, loginUser, getUser} from '../../ducks/authReducer'
 
 
 export class Auth extends Component {
@@ -13,6 +13,9 @@ export class Auth extends Component {
             password: '',
             profile: ''
         }
+    }
+    componentDidMount(){
+        this.props.getUser();
     }
     handleUserName = (e) => {
         this.setState({username: e.target.value, profile: `https://robohash.org/${e.target.value}`})
@@ -34,6 +37,7 @@ export class Auth extends Component {
        
     }
     render() {
+        console.log(this.props.id)
         if(this.props.id !== null && this.props.redirect === true){
             this.props.changePage({page: '/dashboard', nav: 'nav'})
         }
@@ -57,7 +61,8 @@ const mapStateToProps = (reduxState) => ({
 const mapDispatchToProps = {
     changePage,
     loginUser,
-    registerUser
+    registerUser,
+    getUser
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Auth)

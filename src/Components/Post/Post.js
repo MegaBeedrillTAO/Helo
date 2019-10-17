@@ -9,7 +9,7 @@ export default class Post extends Component {
         return (
             <div>
                 
-                <h1>Here is my match params shit: {this.props.match.params.postid}</h1>
+                <h1>Here is my match params stuff: {this.props.match.params.postid}</h1>
             </div>
         )
     }

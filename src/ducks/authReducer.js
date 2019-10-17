@@ -10,6 +10,7 @@ const initialState = {
 const REGISTER_USER = 'REGISTER_USER';
 const LOGIN_USER = 'LOGIN_USER';
 const LOGOUT_USER = 'LOGOUT_USER';
+const GET_USER = 'GET_USER';
 
 export function registerUser(newUser) {
     
@@ -33,6 +34,13 @@ export function logoutUser() {
        type: LOGOUT_USER
     }
  }
+
+export function getUser(){
+   return{
+      type: GET_USER,
+      payload: Axios.get('/auth/user')
+   }
+}
 
 
 export default function reducer(state = initialState, action){
@@ -58,11 +66,19 @@ export default function reducer(state = initialState, action){
          };
          case LOGOUT_USER:
          return {
-            userId: null,
+            user_id: null,
             username: '',
             profile_pic: '',
             redirect: false
          };
+         case GET_USER:
+            return{
+               ...state,
+               user_id: payload.data.user_id,
+               username: payload.data.username,
+               profile_pic: payload.data.profile_pic,
+               redirect: true
+            }
         default: return state
     }
 }
