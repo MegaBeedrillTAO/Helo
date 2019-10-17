@@ -71,7 +71,7 @@ export default function reducer(state = initialState, action){
             profile_pic: '',
             redirect: false
          };
-         case GET_USER:
+         case `${GET_USER}_FULFILLED`:
             return{
                ...state,
                user_id: payload.data.user_id,

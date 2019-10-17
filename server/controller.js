@@ -95,7 +95,7 @@ async function getAllPosts(req,res){
 
 function getUser(req, res){
    if (req.session.user){
-      console.log(req.session.user)
+      
       res.status(200).json(req.session.user)
    }
 }
