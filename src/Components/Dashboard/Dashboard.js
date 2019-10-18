@@ -50,7 +50,7 @@ import {Link} from 'react-router-dom';
             // pic = {el.profile_pic}
             // id = {el.id}
             // />
-            <Link to={`/post/${el.id}`}>
+            <Link to={`/post/${el.id}`} key={i}>
             <div className='post'>
                 <h2>{el.title}</h2>
                 <h2>{}</h2>

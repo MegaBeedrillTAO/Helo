@@ -37,7 +37,7 @@ export class Auth extends Component {
        
     }
     render() {
-        console.log(this.props.id)
+        
         if(this.props.id !== null && this.props.redirect === true){
             this.props.changePage({page: '/dashboard', nav: 'nav'})
         }

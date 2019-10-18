@@ -93,6 +93,14 @@ async function getAllPosts(req,res){
    
 }
 
+ function addPost(req, res){
+   const {title, img, content} = req.body;
+   const {user_id} = req.session.user;
+   req.app.get('db').addNewPost(title, img, content, user_id);
+   
+   res.sendStatus(200);
+}
+
 function getUser(req, res){
    if (req.session.user){
       
@@ -105,5 +113,6 @@ module.exports = {
     logout,
     register,
     getAllPosts,
-    getUser
+    getUser,
+    addPost
 }
